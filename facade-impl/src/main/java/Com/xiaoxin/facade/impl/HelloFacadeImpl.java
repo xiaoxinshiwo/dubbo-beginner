@@ -1,4 +1,4 @@
-package Com.xiaoxin.facade.impl;
+package com.xiaoxin.facade.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.xiaoxin.facade.HelloFacade;

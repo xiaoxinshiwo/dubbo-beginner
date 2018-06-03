@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("hello")
 public class ConsumerTestController {
-    @Reference
+    @Reference(check=true)
     private HelloFacade helloFacade;
 
     @GetMapping("/{name}")
