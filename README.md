@@ -8,7 +8,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.dubbo.config.annotation.Reference;
 ```
 5. 一般来说consumer和不会作为子module消费自己发布的服务，而是通过内部service依赖调用
-本例中有consumer-web-test module紧紧为了测试需要；
+本例中有web-consumer module仅仅为了测试需要；
 也可以使用命令测试服务启动情况：
 ```
 $ telnet 127.0.0.1 20881
@@ -21,3 +21,5 @@ com.xiaoxin.facade.HelloFacade
 dubbo>
 
 ```
+6. 除了web-consumer为消费端完整的web工程其他module属于provider  
+7. 启动顺序：provider >  consumer

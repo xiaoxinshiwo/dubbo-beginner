@@ -11,4 +11,10 @@
 
     <artifactId>service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.xiaoxin</groupId>
+            <artifactId>dao</artifactId>
+        </dependency>
+    </dependencies>
 </project>
