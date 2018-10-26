@@ -24,6 +24,11 @@
     <dependencies>
         <dependency>
             <groupId>com.xiaoxin</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xiaoxin</groupId>
             <artifactId>facade</artifactId>
             <version>${project.version}</version>
         </dependency>

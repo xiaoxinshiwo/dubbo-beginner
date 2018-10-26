@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2017. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<configuration>
+
+    <springProperty scope="context" name="myAppName" source="spring.application.name"
+                    defaultValue="dubbo-beginner"/>
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/${myAppName}-error.log</File>
+        <encoder>
+            <pattern>%d [%level] [%thread] %logger{15}:%line %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/${myAppName}-error.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %p [%t] [%X{traceId}] %logger{5} - %m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="sql" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/${myAppName}-sql.log</File>
+        <encoder>
+            <pattern>%d [%level] [%thread] %logger{15}:%line %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/${myAppName}-sql.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="sql-queue" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <appender-ref ref="sql"/>
+    </appender>
+    <appender name="druid" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/${myAppName}-druid.log</File>
+        <encoder>
+            <pattern>%d [%level] [%thread] %logger{15}:%line %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/${myAppName}-druid.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="druid-queue" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <appender-ref ref="druid"/>
+    </appender>
+    <!-- mybatis loggers -->
+    <logger name="com.xiaoxin.consumer.mapper" level="DEBUG" additivity="false">
+        <appender-ref ref="sql-queue"/>
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="druid.sql.DataSource" level="DEBUG" additivity="false">
+        <appender-ref ref="druid-queue"/>
+    </logger>
+    <logger name="druid.sql.Connection" level="DEBUG" additivity="false">
+        <appender-ref ref="druid-queue"/>
+    </logger>
+    <logger name="druid.sql.Statement" level="DEBUG" additivity="false">
+        <appender-ref ref="druid-queue"/>
+    </logger>
+    <appender name="error-queue" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <appender-ref ref="ERROR"/>
+    </appender>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="com.xiaoxin" level="INFO">
+        <appender-ref ref="error-queue"/>
+    </logger>
+
+
+</configuration>

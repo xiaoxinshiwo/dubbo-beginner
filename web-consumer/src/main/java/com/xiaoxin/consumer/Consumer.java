@@ -3,7 +3,6 @@ package com.xiaoxin.consumer;
 import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -12,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication(scanBasePackages = "com.xiaoxin.consumer")
 @EnableDubboConfiguration
-@MapperScan("com.xiaoxin.comsumer.mapper")
+@MapperScan("com.xiaoxin.consumer.mapper")
 public class Consumer {
 
     public static void main(String[] args) {

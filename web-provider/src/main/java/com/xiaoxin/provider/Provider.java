@@ -11,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication(scanBasePackages = "com.xiaoxin",excludeName = "com.xiaoxin.comsumer")
 @EnableDubboConfiguration
-@MapperScan("com.xiaoxin.provider.mapper")
+@MapperScan("com.xiaoxin.dao.mapper")
 public class Provider {
 
     public static void main(String[] args) {
