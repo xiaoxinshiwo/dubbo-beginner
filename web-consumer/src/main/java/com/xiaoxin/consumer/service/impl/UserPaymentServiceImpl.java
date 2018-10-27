@@ -32,5 +32,6 @@ public class UserPaymentServiceImpl implements UserPaymentService {
         paymentInDB.setRemainder(paymentInDB.getRemainder()-payment.getPayAmount());
         mapper.updateByPrimaryKey(paymentInDB);
 
+
     }
 }

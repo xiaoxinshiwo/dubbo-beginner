@@ -30,7 +30,7 @@ public class RocketMqProducderConfig {
         TransactionMQProducer mqProducer = new TransactionMQProducer(GROUP_NAME);
         mqProducer.setNamesrvAddr(namesrvAddr);
         mqProducer.setTransactionCheckListener(msg -> {
-            // doNothing
+            // TODO check listener 会决断prepare消息何去何从，此处需要实现
             return LocalTransactionState.COMMIT_MESSAGE;
         });
         Runtime.getRuntime().addShutdownHook(new Thread(() -> mqProducer.shutdown()));
