@@ -22,4 +22,5 @@ dubbo>
 
 ```
 6. 除了web-consumer为消费端完整的web工程其他module属于provider  
-7. 启动顺序：provider >  consumer
+7. 启动顺序：provider >  consumer  
+8、消息机制，确保数据的最终一致性；需要安装rocketmq4.3
