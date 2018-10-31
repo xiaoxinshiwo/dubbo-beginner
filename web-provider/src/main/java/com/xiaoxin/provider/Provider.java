@@ -9,7 +9,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @Auther zhangyongxin
  * @date 2018/6/3 下午1:18
  */
-@SpringBootApplication(scanBasePackages = "com.xiaoxin",excludeName = "com.xiaoxin.comsumer")
+@SpringBootApplication(scanBasePackages = "com.xiaoxin")
 @EnableDubboConfiguration
 @MapperScan("com.xiaoxin.dao.mapper")
 public class Provider {
