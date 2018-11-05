@@ -38,6 +38,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.xiaoxin.provider.Provider</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -62,5 +72,6 @@
                 </dependencies>
             </plugin>
         </plugins>
+        <finalName>${artifactId}</finalName>
     </build>
 </project>
